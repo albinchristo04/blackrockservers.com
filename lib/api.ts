@@ -64,8 +64,7 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
 
     if (!response.ok) {
       console.error('API Error:', response.status, response.statusText);
-      // Fallback to mock data if API fails (for development/demo)
-      return getMockServers();
+      return []; // Return empty array on error, NO MOCK DATA
     }
 
     const data = await response.json();
@@ -75,7 +74,7 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
     // Assuming array of objects.
     if (!Array.isArray(data)) {
       console.warn('API returned non-array:', data);
-      return getMockServers();
+      return []; // Return empty array, NO MOCK DATA
     }
 
     return data.map((item: any) => {
@@ -94,38 +93,6 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
 
   } catch (error) {
     console.error('Failed to fetch servers:', error);
-    return getMockServers();
+    return []; // Return empty array on error, NO MOCK DATA
   }
 });
-
-// Mock Data Fallback
-const getMockServers = (): ServerProduct[] => {
-  return [
-    {
-      id: 'mock-1',
-      title: 'Dual Xeon E5-2660',
-      price: 55.00, // $50 + 10%
-      originalPrice: 50.00,
-      specs: {
-        cpu: 'Dual Xeon E5-2660',
-        ram: '64GB RAM',
-        storage: '2x480GB SSD',
-        bandwidth: 'Unmetered',
-      },
-      inStock: true,
-    },
-    {
-      id: 'mock-2',
-      title: 'AMD Ryzen 9 5950X',
-      price: 132.00, // $120 + 10%
-      originalPrice: 120.00,
-      specs: {
-        cpu: 'AMD Ryzen 9 5950X',
-        ram: '128GB RAM',
-        storage: '2x1TB NVMe',
-        bandwidth: '100TB',
-      },
-      inStock: true,
-    },
-  ];
-};

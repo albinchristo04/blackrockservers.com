@@ -1,0 +1,14 @@
+
+--- Endpoint: /preconfigured-servers/ ---
+Status: 200
+Headers: {"date":"Mon, 01 Dec 2025 13:12:39 GMT","content-type":"text/html; charset=UTF-8","transfer-encoding":"chunked","connection":"keep-alive","server":"cloudflare","expires":"Thu, 19 Nov 1981 08:52:00 GMT","cache-control":"no-store, no-cache, must-revalidate, post-check=0, pre-check=0","pragma":"no-cache","nel":"{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}","report-to":"{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=1zP%2F5QRiKSC%2FktyBEsgs6VDdOlMm6%2BXWUryfNfn5mTQjEcok7FqVkKRxwglzkgY1Q%2F9NDK4V8ar5Bk8E3MbUztacncihzGJQl%2Blc2zxZTF1jWwtOS3bN\"}]}","cf-cache-status":"DYNAMIC","set-cookie":["PHPSESSID=u8ia4k9roaf62o3diios9jnbi7; Path=/; Max-Age=2592000; Expires=Wed, 31 Dec 2025 13:12:39 GMT"],"cf-ray":"9a72d65b69f97e6f-MAA"}
+Body:
+
+-----------------------------
+
+--- Endpoint: /list-products/ ---
+Status: 200
+Headers: {"date":"Mon, 01 Dec 2025 13:12:40 GMT","content-type":"text/html; charset=UTF-8","transfer-encoding":"chunked","connection":"keep-alive","server":"cloudflare","expires":"Thu, 19 Nov 1981 08:52:00 GMT","cache-control":"no-store, no-cache, must-revalidate, post-check=0, pre-check=0","pragma":"no-cache","nel":"{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}","report-to":"{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=9PtW%2BeJewVDjEho40KuaqJHNTEc0N4yrizP6U7L2m8DSRmEcc3IMIJjYXIi7TCwVpQSbmm0pqj67%2F902AiHGDzRD6vG7x%2FrxJTrIuwBgjha%2B4lXH61lN\"}]}","cf-cache-status":"DYNAMIC","set-cookie":["PHPSESSID=50mld6cdllhbcjn47211t37hk0; Path=/; Max-Age=2592000; Expires=Wed, 31 Dec 2025 13:12:39 GMT"],"cf-ray":"9a72d6608e797e6f-MAA"}
+Body:
+
+-----------------------------
