@@ -91,9 +91,6 @@ export default async function BudgetServersPage() {
                             <Link href="/products/dedicated-servers" className="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 transition-colors">
                                 View All Servers
                             </Link>
-                            <Link href="/configurator" className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all">
-                                Custom Build
-                            </Link>
                         </div>
                     </div>
                 </div>
@@ -129,6 +126,44 @@ export default async function BudgetServersPage() {
                             </div>
                             <h3 className="text-white font-bold mb-2">DDoS Protection</h3>
                             <p className="text-gray-400 text-sm">Free included with every server</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Why Choose Section */}
+            <section className="py-20 bg-gray-900/50">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto text-center mb-12">
+                        <h2 className="text-3xl font-bold text-white mb-4">Why Choose Budget Servers?</h2>
+                        <p className="text-gray-400">
+                            Our budget line offers the perfect entry point for dedicated hosting without compromising on quality or reliability.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Ideal for Development</h3>
+                            <p className="text-gray-400 text-sm">
+                                Perfect environment for testing applications, staging sites, and development workflows without the high cost of enterprise hardware.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Personal Projects</h3>
+                            <p className="text-gray-400 text-sm">
+                                Host your game servers, personal blogs, or media servers with full root access and dedicated resources just for you.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Small Business</h3>
+                            <p className="text-gray-400 text-sm">
+                                Reliable hosting for small business websites, email servers, and internal tools with 99.9% uptime guarantee.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Learning & Labs</h3>
+                            <p className="text-gray-400 text-sm">
+                                An affordable way to learn server administration, virtualization, and networking with real bare metal hardware.
+                            </p>
                         </div>
                     </div>
                 </div>

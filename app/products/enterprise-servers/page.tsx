@@ -96,9 +96,6 @@ export default async function EnterpriseServersPage() {
                             <Link href="/products/dedicated-servers" className="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 transition-colors">
                                 View All Servers
                             </Link>
-                            <Link href="/contact" className="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all">
-                                Contact Sales
-                            </Link>
                         </div>
                     </div>
                 </div>
@@ -143,6 +140,44 @@ export default async function EnterpriseServersPage() {
                             </div>
                             <h3 className="text-white font-bold mb-2">Premium Support</h3>
                             <p className="text-gray-400 text-sm">24/7 priority assistance</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Why Choose Section */}
+            <section className="py-20 bg-gray-900/50">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto text-center mb-12">
+                        <h2 className="text-3xl font-bold text-white mb-4">Why Choose Enterprise Servers?</h2>
+                        <p className="text-gray-400">
+                            The ultimate solution for mission-critical applications requiring maximum performance, reliability, and scalability.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Big Data & Analytics</h3>
+                            <p className="text-gray-400 text-sm">
+                                Process massive datasets in real-time with high core count processors and large memory capacity.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">High-Frequency Trading</h3>
+                            <p className="text-gray-400 text-sm">
+                                Ultra-low latency infrastructure designed for financial institutions and trading platforms where every millisecond counts.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">AI & Machine Learning</h3>
+                            <p className="text-gray-400 text-sm">
+                                Accelerate your AI training and inference workloads with powerful multi-core processors and high-speed storage.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">SaaS Platforms</h3>
+                            <p className="text-gray-400 text-sm">
+                                Scale your Software-as-a-Service platform with confidence on infrastructure built for multi-tenancy and high availability.
+                            </p>
                         </div>
                     </div>
                 </div>

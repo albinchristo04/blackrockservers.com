@@ -87,7 +87,7 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
         location: server.location || undefined,
         category,
       };
-    });
+    }).sort((a: ServerProduct, b: ServerProduct) => a.price - b.price);
 
   } catch (error) {
     console.error('[API] Error fetching servers:', error);

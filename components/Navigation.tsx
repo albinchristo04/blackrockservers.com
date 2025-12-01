@@ -50,9 +50,7 @@ export default function Navigation() {
                             </div>
                         </div>
 
-                        <Link href="/configurator" className="text-gray-300 hover:text-white transition-colors">
-                            Configure
-                        </Link>
+
                         <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors">
                             Pricing
                         </Link>
@@ -104,7 +102,7 @@ export default function Navigation() {
                             <Link href="/products/budget-servers" className="text-gray-300 hover:text-white transition-colors pl-4">Budget Servers</Link>
                             <Link href="/products/performance-servers" className="text-gray-300 hover:text-white transition-colors pl-4">Performance Servers</Link>
                             <Link href="/products/enterprise-servers" className="text-gray-300 hover:text-white transition-colors pl-4">Enterprise Servers</Link>
-                            <Link href="/configurator" className="text-gray-300 hover:text-white transition-colors">Configure</Link>
+
                             <Link href="/pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</Link>
                             <Link href="/features" className="text-gray-300 hover:text-white transition-colors">Features</Link>
                             <Link href="/data-centers" className="text-gray-300 hover:text-white transition-colors">Data Centers</Link>

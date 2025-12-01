@@ -91,9 +91,6 @@ export default async function PerformanceServersPage() {
                             <Link href="/products/dedicated-servers" className="px-6 py-3 rounded-xl bg-gray-800 hover:bg-gray-700 transition-colors">
                                 View All Servers
                             </Link>
-                            <Link href="/configurator" className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all">
-                                Custom Build
-                            </Link>
                         </div>
                     </div>
                 </div>
@@ -138,6 +135,44 @@ export default async function PerformanceServersPage() {
                             </div>
                             <h3 className="text-white font-bold mb-2">99.9% Uptime</h3>
                             <p className="text-gray-400 text-sm">SLA guaranteed</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Why Choose Section */}
+            <section className="py-20 bg-gray-900/50">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-3xl mx-auto text-center mb-12">
+                        <h2 className="text-3xl font-bold text-white mb-4">Why Choose Performance Servers?</h2>
+                        <p className="text-gray-400">
+                            Designed for businesses that need reliable power for production workloads, databases, and high-traffic applications.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">E-Commerce Hosting</h3>
+                            <p className="text-gray-400 text-sm">
+                                Fast page loads and high reliability for online stores. Handle traffic spikes with ease and ensure your customers have a smooth shopping experience.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Database Servers</h3>
+                            <p className="text-gray-400 text-sm">
+                                High-speed NVMe storage and ample RAM make these servers ideal for hosting MySQL, PostgreSQL, or MongoDB databases.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Virtualization</h3>
+                            <p className="text-gray-400 text-sm">
+                                Run multiple virtual machines or containers with Proxmox, ESXi, or Docker. Great for consolidating smaller workloads.
+                            </p>
+                        </div>
+                        <div className="bg-black border border-gray-800 p-6 rounded-xl">
+                            <h3 className="text-xl font-bold text-white mb-3">Streaming & Media</h3>
+                            <p className="text-gray-400 text-sm">
+                                Unmetered bandwidth and powerful CPUs support media transcoding and streaming applications without buffering.
+                            </p>
                         </div>
                     </div>
                 </div>
