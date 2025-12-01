@@ -3,6 +3,17 @@ import { getServers, ServerProduct } from '@/lib/api';
 export default async function ServerList() {
     const servers = await getServers();
 
+    if (servers.length === 0) {
+        return (
+            <section id="servers" className="py-20 bg-black text-white">
+                <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-4xl font-bold text-white mb-4">No Servers Available</h2>
+                    <p className="text-gray-400">Please check back later or contact support.</p>
+                </div>
+            </section>
+        );
+    }
+
     return (
         <section id="servers" className="py-20 bg-black text-white">
             <div className="container mx-auto px-4">
@@ -60,7 +71,6 @@ function SpecRow({ label, value, icon }: { label: string, value: string, icon: s
     return (
         <div className="flex items-center gap-3 text-gray-400">
             <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-blue-400">
-                {/* Simple SVG Icons based on type */}
                 {icon === 'cpu' && (
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />

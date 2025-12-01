@@ -1,13 +1,5 @@
+import { sql } from '@vercel/postgres';
 import { cache } from 'react';
-
-// Types for the Nocix API response (inferred)
-export interface NocixService {
-  id: string;
-  name: string;
-  price: string; // Likely a string like "$50.00" or number
-  description?: string;
-  // Add other fields as we discover them
-}
 
 export interface ServerProduct {
   id: string;
@@ -23,19 +15,16 @@ export interface ServerProduct {
   inStock: boolean;
 }
 
-const API_USER = process.env.NOCIX_API_USER || '50307_api'; // Fallback for local dev if env not set
+const API_USER = process.env.NOCIX_API_USER || '50307_api';
 const API_TOKEN = process.env.NOCIX_API_TOKEN || '6af0f8rzbzk7ldbr1s6mrpdql5wdylbn';
 const BASE_URL = 'https://my.nocix.net/api';
 
-// Helper to parse price string to number
 const parsePrice = (priceStr: string | number): number => {
   if (typeof priceStr === 'number') return priceStr;
   return parseFloat(priceStr.replace(/[^0-9.]/g, ''));
 };
 
-// Helper to extract specs from description (Regex based on typical server names)
 const extractSpecs = (name: string, description: string = '') => {
-  // Example: "Dual Xeon E5-2660 64GB RAM 2x480GB SSD Unmetered"
   const cpuMatch = name.match(/^(.*?)(?=\s\d+GB)/) || [name, name];
   const ramMatch = name.match(/(\d+GB\sRAM)/) || description.match(/(\d+GB\sRAM)/);
   const storageMatch = name.match(/(\d+x\d+[GT]B\s(?:SSD|HDD|NVMe))/) || description.match(/(\d+x\d+[GT]B\s(?:SSD|HDD|NVMe))/);
@@ -50,8 +39,29 @@ const extractSpecs = (name: string, description: string = '') => {
 };
 
 export const getServers = cache(async (): Promise<ServerProduct[]> => {
-  // Using 'preconfigured-servers' as it likely lists available stock
-  // If this fails, we might need 'list-products' or 'list-services' (though list-services is usually for owned items)
+  // Try to fetch from database first
+  try {
+    const { rows } = await sql`SELECT * FROM servers WHERE in_stock = true ORDER BY price ASC`;
+    if (rows && rows.length > 0) {
+      return rows.map((row: any) => ({
+        id: row.id,
+        title: row.title,
+        price: parseFloat(row.price),
+        originalPrice: parseFloat(row.original_price),
+        specs: {
+          cpu: row.cpu,
+          ram: row.ram,
+          storage: row.storage,
+          bandwidth: row.bandwidth,
+        },
+        inStock: row.in_stock,
+      }));
+    }
+  } catch (dbError) {
+    console.log('Database not available, falling back to API:', dbError);
+  }
+
+  // Fallback to Nocix API
   const endpoint = `${BASE_URL}/preconfigured-servers/`;
 
   try {
@@ -59,27 +69,24 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
       headers: {
         'Authorization': 'Basic ' + btoa(`${API_USER}:${API_TOKEN}`),
       },
-      next: { revalidate: 3600 } // Cache for 1 hour
+      next: { revalidate: 3600 }
     });
 
     if (!response.ok) {
       console.error('API Error:', response.status, response.statusText);
-      return []; // Return empty array on error, NO MOCK DATA
+      return [];
     }
 
     const data = await response.json();
 
-    // Transform data
-    // Note: We need to see the actual structure to map correctly. 
-    // Assuming array of objects.
     if (!Array.isArray(data)) {
       console.warn('API returned non-array:', data);
-      return []; // Return empty array, NO MOCK DATA
+      return [];
     }
 
     return data.map((item: any) => {
       const originalPrice = parsePrice(item.price || item.monthly_fee || '0');
-      const markupPrice = originalPrice * 1.10; // 10% markup
+      const markupPrice = originalPrice * 1.10;
 
       return {
         id: item.id || `server-${Math.random()}`,
@@ -87,12 +94,12 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
         price: parseFloat(markupPrice.toFixed(2)),
         originalPrice: originalPrice,
         specs: extractSpecs(item.name || '', item.description || ''),
-        inStock: true, // API usually lists available ones
+        inStock: true,
       };
     });
 
   } catch (error) {
     console.error('Failed to fetch servers:', error);
-    return []; // Return empty array on error, NO MOCK DATA
+    return [];
   }
 });
