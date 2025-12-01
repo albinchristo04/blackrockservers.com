@@ -5,10 +5,13 @@
 3.  **Select Repository**: Choose `blackrockservers.com`.
 4.  **Configure Build**:
     *   **Framework Preset**: Select **Next.js**.
-    *   **Build Command**: `npm run pages:build` (This uses the `@cloudflare/next-on-pages` adapter we installed for better compatibility).
+    *   **Build Command**: `npm run pages:build`
     *   **Build Output Directory**: `.vercel/output/static`
 5.  **Environment Variables**:
-    *   Add any necessary environment variables (e.g., API keys) in the **Environment Variables** section.
+    *   Go to **Settings** > **Environment Variables** > **Add variable**.
+    *   Add `NOCIX_API_USER` with your API user (e.g., `50307_api`).
+    *   Add `NOCIX_API_TOKEN` with your API token.
+    *   *Note*: For security, these are now required for the live site to fetch real data.
 6.  **Save and Deploy**.
 
 > [!NOTE]

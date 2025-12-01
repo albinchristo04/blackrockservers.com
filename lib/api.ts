@@ -23,8 +23,8 @@ export interface ServerProduct {
   inStock: boolean;
 }
 
-const API_USER = '50307_api';
-const API_TOKEN = '6af0f8rzbzk7ldbr1s6mrpdql5wdylbn';
+const API_USER = process.env.NOCIX_API_USER || '50307_api'; // Fallback for local dev if env not set
+const API_TOKEN = process.env.NOCIX_API_TOKEN || '6af0f8rzbzk7ldbr1s6mrpdql5wdylbn';
 const BASE_URL = 'https://my.nocix.net/api';
 
 // Helper to parse price string to number
