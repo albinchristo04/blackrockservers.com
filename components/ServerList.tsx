@@ -1,4 +1,5 @@
 import { getServers, ServerProduct } from '@/lib/api';
+import Link from 'next/link';
 
 export default async function ServerList() {
     const servers = await getServers();
@@ -14,6 +15,10 @@ export default async function ServerList() {
         );
     }
 
+    const budgetServers = servers.filter(s => s.category === 'budget').slice(0, 3);
+    const performanceServers = servers.filter(s => s.category === 'performance').slice(0, 3);
+    const enterpriseServers = servers.filter(s => s.category === 'enterprise').slice(0, 3);
+
     return (
         <section id="servers" className="py-20 bg-black text-white">
             <div className="container mx-auto px-4">
@@ -21,28 +26,117 @@ export default async function ServerList() {
                     <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
                         Premium Dedicated Servers
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
                         High-performance infrastructure for your most demanding applications.
                         Instant deployment and uncompromised reliability.
                     </p>
+                    <Link
+                        href="/products/dedicated-servers"
+                        className="inline-block px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] transition-all"
+                    >
+                        View All Servers
+                    </Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {servers.map((server) => (
-                        <ServerCard key={server.id} server={server} />
-                    ))}
-                </div>
+                {/* Budget Servers */}
+                {budgetServers.length > 0 && (
+                    <div className="mb-16">
+                        <div className="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 className="text-3xl font-bold text-white mb-2">Budget Servers</h3>
+                                <p className="text-gray-400">Affordable dedicated servers starting under $30/month</p>
+                            </div>
+                            <Link
+                                href="/products/budget-servers"
+                                className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                            >
+                                View All
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {budgetServers.map((server) => (
+                                <ServerCard key={server.id} server={server} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Performance Servers */}
+                {performanceServers.length > 0 && (
+                    <div className="mb-16">
+                        <div className="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 className="text-3xl font-bold text-white mb-2">Performance Servers</h3>
+                                <p className="text-gray-400">Balanced power and value for demanding workloads</p>
+                            </div>
+                            <Link
+                                href="/products/performance-servers"
+                                className="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                            >
+                                View All
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {performanceServers.map((server) => (
+                                <ServerCard key={server.id} server={server} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Enterprise Servers */}
+                {enterpriseServers.length > 0 && (
+                    <div>
+                        <div className="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 className="text-3xl font-bold text-white mb-2">Enterprise Servers</h3>
+                                <p className="text-gray-400">Maximum performance for mission-critical applications</p>
+                            </div>
+                            <Link
+                                href="/products/enterprise-servers"
+                                className="text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-2"
+                            >
+                                View All
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                            </Link>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {enterpriseServers.map((server) => (
+                                <ServerCard key={server.id} server={server} />
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </section>
     );
 }
 
 function ServerCard({ server }: { server: ServerProduct }) {
+    const categoryColors = {
+        budget: 'bg-green-500/10 text-green-400',
+        performance: 'bg-blue-500/10 text-blue-400',
+        enterprise: 'bg-purple-500/10 text-purple-400',
+    };
+
     return (
         <div className="group relative bg-gray-900 border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
 
             <div className="relative z-10">
+                {/* Category Badge */}
+                <div className={`inline-block px-3 py-1 rounded-full ${categoryColors[server.category]} text-xs font-semibold mb-4 capitalize`}>
+                    {server.category}
+                </div>
+
                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
                     {server.title}
                 </h3>
@@ -59,9 +153,12 @@ function ServerCard({ server }: { server: ServerProduct }) {
                     <SpecRow label="Bandwidth" value={server.specs.bandwidth} icon="network" />
                 </div>
 
-                <button className="w-full py-3 px-6 rounded-xl bg-white text-black font-bold hover:bg-blue-500 hover:text-white transition-all duration-300 transform group-hover:translate-y-[-2px]">
+                <Link
+                    href={`/order?server=${server.id}`}
+                    className="block w-full py-3 px-6 rounded-xl bg-white text-black font-bold hover:bg-blue-500 hover:text-white transition-all duration-300 transform group-hover:translate-y-[-2px] text-center"
+                >
                     Deploy Now
-                </button>
+                </Link>
             </div>
         </div>
     );
