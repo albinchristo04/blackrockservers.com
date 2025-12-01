@@ -1,0 +1,88 @@
+import { getServers, ServerProduct } from '@/lib/api';
+
+export default async function ServerList() {
+    const servers = await getServers();
+
+    return (
+        <section id="servers" className="py-20 bg-black text-white">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600 mb-4">
+                        Premium Dedicated Servers
+                    </h2>
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                        High-performance infrastructure for your most demanding applications.
+                        Instant deployment and uncompromised reliability.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {servers.map((server) => (
+                        <ServerCard key={server.id} server={server} />
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function ServerCard({ server }: { server: ServerProduct }) {
+    return (
+        <div className="group relative bg-gray-900 border border-gray-800 rounded-2xl p-8 hover:border-blue-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
+            <div className="relative z-10">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    {server.title}
+                </h3>
+
+                <div className="flex items-baseline gap-1 mb-6">
+                    <span className="text-3xl font-bold text-white">${server.price}</span>
+                    <span className="text-gray-500 text-sm">/mo</span>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                    <SpecRow label="CPU" value={server.specs.cpu} icon="cpu" />
+                    <SpecRow label="RAM" value={server.specs.ram} icon="memory" />
+                    <SpecRow label="Storage" value={server.specs.storage} icon="storage" />
+                    <SpecRow label="Bandwidth" value={server.specs.bandwidth} icon="network" />
+                </div>
+
+                <button className="w-full py-3 px-6 rounded-xl bg-white text-black font-bold hover:bg-blue-500 hover:text-white transition-all duration-300 transform group-hover:translate-y-[-2px]">
+                    Deploy Now
+                </button>
+            </div>
+        </div>
+    );
+}
+
+function SpecRow({ label, value, icon }: { label: string, value: string, icon: string }) {
+    return (
+        <div className="flex items-center gap-3 text-gray-400">
+            <div className="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-blue-400">
+                {/* Simple SVG Icons based on type */}
+                {icon === 'cpu' && (
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                    </svg>
+                )}
+                {icon === 'memory' && (
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                    </svg>
+                )}
+                {icon === 'storage' && (
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                    </svg>
+                )}
+                {icon === 'network' && (
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                )}
+            </div>
+            <span className="text-sm font-medium">{value}</span>
+        </div>
+    );
+}
