@@ -59,7 +59,7 @@ export const getServers = cache(async (): Promise<ServerProduct[]> => {
       }
 
       const originalPrice = parsePrice(server.price || '0');
-      const markupPrice = originalPrice * 1.10; // 10% markup
+      const markupPrice = originalPrice + 10; // Add $10 markup
       const finalPrice = Math.ceil(markupPrice);
 
       // Categorize based on price
