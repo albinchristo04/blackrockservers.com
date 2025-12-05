@@ -3,6 +3,8 @@ import OrderForm from '@/components/OrderForm';
 import { getServers } from '@/lib/api';
 import { notFound } from 'next/navigation';
 
+export const runtime = 'edge';
+
 export const metadata = {
     title: 'Configure Server | BlackRock Servers',
     description: 'Customize and deploy your dedicated server.',
