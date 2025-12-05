@@ -1,5 +1,5 @@
 import PageHeader from '@/components/PageHeader';
-import Image from 'next/image';
+
 
 export const metadata = {
     title: 'About Us | BlackRock Servers',

@@ -11,10 +11,10 @@ export const metadata = {
 export default async function OrderPage({
     searchParams,
 }: {
-    searchParams: { server?: string; billing?: string };
+    searchParams: Promise<{ server?: string; billing?: string }>;
 }) {
     const servers = await getServers();
-    const serverId = searchParams.server;
+    const { server: serverId, billing: billingParam } = await searchParams;
     const server = servers.find((s) => s.id === serverId);
 
     if (!server) {
@@ -22,7 +22,7 @@ export default async function OrderPage({
         return notFound();
     }
 
-    const billing = searchParams.billing === 'yearly' ? 'yearly' : 'monthly';
+    const billing = billingParam === 'yearly' ? 'yearly' : 'monthly';
 
     return (
         <main className="min-h-screen bg-black">

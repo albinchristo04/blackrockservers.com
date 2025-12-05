@@ -109,14 +109,14 @@ lib/
 
 The following pages are linked in the navigation but need to be created:
 
-1. `/configurator` - Interactive server configurator
-2. `/pricing` - Pricing comparison page
-3. `/features` - Technical features page
-4. `/data-centers` - Data center locations
-5. `/support` - Support & knowledge base
-6. `/about` - Company information
-7. `/login` - Client area login
-8. `/contact` - Contact form
+1. ✅ `/configurator` - Interactive server configurator (implemented as `/order`)
+2. ✅ `/pricing` - Pricing comparison page
+3. ✅ `/features` - Technical features page
+4. ✅ `/data-centers` - Data center locations
+5. ✅ `/support` - Support & knowledge base
+6. ✅ `/about` - Company information
+7. ✅ `/login` - Client area login
+8. ✅ `/contact` - Contact form
 
 ## Testing
 
